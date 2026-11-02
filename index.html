@@ -11,7 +11,7 @@
     :root{--bg:#101311;--panel:#181d1a;--panel2:#202722;--text:#f4f7f4;--muted:#9ba69e;--green:#76b900;--green2:#91d32b;--line:rgba(255,255,255,.08);--sidebar:244px}
     *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh}button,input{font:inherit}button{cursor:pointer}
     .app{min-height:100vh}.sidebar{position:fixed;inset:0 auto 0 0;width:var(--sidebar);background:#141916;border-right:1px solid var(--line);padding:26px 18px;display:flex;flex-direction:column;z-index:20}
-    .brand{display:flex;align-items:center;gap:11px;padding:0 10px 34px;text-decoration:none;color:var(--text)}.brand-mark{width:35px;height:35px;flex:0 0 35px;object-fit:cover;object-position:center;border-radius:8px;border:1px solid #76b90088;box-shadow:0 0 24px #76b90035}.brand-name{font:700 20px 'Space Grotesk';letter-spacing:-.8px}.brand-name span{color:var(--green2)}
+    .brand{display:flex;align-items:center;gap:11px;padding:0 10px 34px;text-decoration:none;color:var(--text)}.brand-mark{width:35px;height:35px;flex:0 0 35px;display:grid;place-items:center;border-radius:8px;border:1px solid #76b90088;background:linear-gradient(145deg,#314b20,#151d12);color:#b8ed69;font:800 22px "Space Grotesk";box-shadow:0 0 24px #76b90035}.brand-name{font:700 20px 'Space Grotesk';letter-spacing:-.8px}.brand-name span{color:var(--green2)}
     .nav-label{font-size:10px;font-weight:800;letter-spacing:1.5px;color:#6f7a72;padding:0 12px 11px}.nav{display:grid;gap:5px}.nav button{border:0;background:transparent;color:#aab4ac;display:flex;align-items:center;gap:13px;padding:11px 13px;border-radius:9px;text-align:left;font-size:13px;font-weight:600;transition:.2s}.nav button:hover,.nav button.active{background:#293323;color:#fff}.nav button.active{box-shadow:inset 3px 0 var(--green)}.nav-icon{width:18px;text-align:center;font-size:16px}.side-divider{height:1px;background:var(--line);margin:25px 4px}.console-nav{display:grid;gap:3px}.console-nav button{border:0;background:transparent;color:#9ba69e;padding:9px 12px;border-radius:8px;text-align:left;font-size:12px;display:flex;justify-content:space-between}.console-nav button:hover{background:#222a24;color:#fff}.count{color:#68746b;font-size:10px}.sidebar-bottom{margin-top:auto;background:linear-gradient(145deg,#26351d,#1a2118);border:1px solid #435b2b;border-radius:12px;padding:15px}.sidebar-bottom strong{font-size:12px}.sidebar-bottom p{color:#a6b29e;font-size:11px;line-height:1.5;margin:7px 0 12px}.sidebar-bottom button{border:0;border-radius:6px;background:var(--green);color:#10150a;padding:8px 11px;font-size:11px;font-weight:800}
     .main{margin-left:var(--sidebar);min-height:100vh}.topbar{height:76px;display:flex;align-items:center;gap:22px;padding:0 42px;border-bottom:1px solid var(--line);position:sticky;top:0;background:#101311ed;backdrop-filter:blur(18px);z-index:15}.mobile-brand{display:none}.search{position:relative;max-width:470px;flex:1}.search input{width:100%;height:42px;background:#1c221e;border:1px solid #2b342d;border-radius:8px;padding:0 15px 0 42px;color:#fff;outline:none;font-size:12px}.search input:focus{border-color:#668f32}.search-icon{position:absolute;left:15px;top:12px;color:#89948b}.top-actions{margin-left:auto;display:flex;align-items:center;gap:18px}.top-link{border:0;background:transparent;color:#aeb8b0;font-size:12px;font-weight:600}.top-link:hover{color:white}.avatar{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#34432b;color:#c5f18c;font-size:12px;font-weight:800;border:1px solid #526e37}
     .content{padding:30px 42px 70px;max-width:1600px;margin:auto}.hero{height:360px;border-radius:14px;overflow:hidden;position:relative;background:linear-gradient(90deg,#111810 0%,rgba(15,22,16,.92) 30%,rgba(15,22,16,.25) 75%),linear-gradient(0deg,#101311 0%,transparent 50%),url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1800&q=85') center 42%/cover;display:flex;align-items:center;padding:48px 52px;border:1px solid #ffffff12}.hero:after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 78% 50%,transparent 0%,#0c120c33 65%);pointer-events:none}.hero-copy{position:relative;z-index:1;max-width:490px}.eyebrow{display:flex;align-items:center;gap:8px;color:#a8d86c;font-size:10px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase}.eyebrow:before{content:"";width:19px;height:2px;background:var(--green)}h1{font:700 clamp(32px,4vw,52px)/1.04 'Space Grotesk';letter-spacing:-2px;margin:17px 0 13px}.hero-copy p{color:#bdc7bf;font-size:13px;line-height:1.7;max-width:390px;margin:0 0 24px}.hero-actions{display:flex;gap:11px}.primary-btn,.secondary-btn{border:0;border-radius:6px;padding:12px 19px;font-size:12px;font-weight:800;display:inline-flex;align-items:center;gap:9px}.primary-btn{background:var(--green);color:#10150a}.primary-btn:hover{background:var(--green2);transform:translateY(-1px)}.secondary-btn{background:#ffffff17;color:white;border:1px solid #ffffff25}.secondary-btn:hover{background:#ffffff25}.hero-tag{position:absolute;right:28px;bottom:24px;z-index:1;color:#d2dbd2;font-size:10px;letter-spacing:1px}
@@ -27,7 +27,7 @@
 <body>
 <div class="app">
   <aside class="sidebar">
-    <a class="brand" href="#" aria-label="RetroVerse home"><img class="brand-mark" src="assets/Hsz6T.jpg" alt="RetroVerse logo" /><span class="brand-name">RETRO<span>VERSE</span></span></a>
+    <a class="brand" href="#" aria-label="RetroVerse home"><span class="brand-mark" aria-hidden="true">R</span><span class="brand-name">RETRO<span>VERSE</span></span></a>
     <div class="nav-label">DISCOVER</div>
     <nav class="nav">
       <button class="active" data-view="home"><span class="nav-icon">⌂</span> Home</button>
@@ -50,7 +50,7 @@
   </aside>
   <main class="main">
     <header class="topbar">
-      <div class="mobile-brand"><img class="brand-mark" src="assets/Hsz6T.jpg" alt="RetroVerse logo" /> RETRO<b>VERSE</b></div>
+      <div class="mobile-brand"><span class="brand-mark" aria-hidden="true">R</span> RETRO<b>VERSE</b></div>
       <label class="search"><span class="search-icon">⌕</span><input id="searchInput" type="search" placeholder="Search games, consoles..." autocomplete="off" /></label>
       <div class="top-actions"><button class="top-link" data-view="all">Browse library</button><button class="top-link" id="aboutBtn">About</button></div>
     </header>
@@ -108,12 +108,72 @@ const games=[
  {id:22,title:'Castlevania',platform:'NES',year:1986,genre:'Action',emoji:'🦇',image:'https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_Entertainment_System/master/Named_Boxarts/Castlevania%20(USA).png',bg:'linear-gradient(135deg,#542d54,#20202c)',desc:'Enter Dracula’s castle in a gothic action classic.'},
  {id:23,title:'Metal Slug',platform:'Arcade',year:1996,genre:'Run & Gun',emoji:'💥',image:'https://thumbnails.libretro.com/SNK%20-%20Neo%20Geo/Named_Boxarts/Metal%20Slug%20-%20Super%20Vehicle-001.png',bg:'linear-gradient(135deg,#5e7130,#8a422c)',desc:'Blast through spectacular stages in this beloved run-and-gun arcade series.'},
  {id:24,title:'Final Fantasy VII',platform:'PlayStation',year:1997,genre:'RPG',emoji:'☄️',image:'https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Final%20Fantasy%20VII%20(USA)%20(Disc%201).png',bg:'linear-gradient(135deg,#284b68,#34314e)',desc:'Join Cloud and friends in an unforgettable role-playing adventure.'}
+]
+;
+let favorites=new Set(JSON.parse(localStorage.getItem('rv-favorites')||'[]')), recent=JSON.parse(localStorage.getItem('rv-recent')||'[]'), currentView='home', currentConsole='All', activeGame=null, currentRomUrl=null, emulatorScript=null;
+const $=s=>document.querySelector(s);
+function toast(msg){const t=$('#toast');t.textContent=msg;t.classList.add('show');clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.classList.remove('show'),2200)}
+function card(g){return '<article class="game-card" data-id="'+g.id+'"><div class="cover" style="background:'+g.bg+'">'+(g.image?'<img class="cover-photo" src="'+g.image+'" alt="'+g.title+' original game artwork" loading="lazy" onerror="this.remove()">':'<div class="cover-art">'+g.emoji+'</div>')+'<button class="fav '+(favorites.has(g.id)?'on':'')+'" data-fav="'+g.id+'" aria-label="Toggle favorite">'+(favorites.has(g.id)?'♥':'♡')+'</button><div class="cover-title">'+g.title+'</div></div><div class="game-meta"><strong>'+g.title+'</strong><span>'+g.year+'</span></div><div class="game-platform">'+g.platform+' · '+g.genre+'</div></article>'}
+function render(){
+ const q=$('#searchInput').value.trim().toLowerCase();
+ let list=games.filter(g=>(currentConsole==='All'||g.platform===currentConsole)&&(currentView!=='favorites'||favorites.has(g.id))&&(currentView!=='recent'||recent.includes(g.id))&&(!q||(g.title+' '+g.platform+' '+g.genre).toLowerCase().includes(q)));
+ if(currentView==='home'&&!q&&currentConsole==='All'){ $('#gamesHeading').textContent='Featured classics';$('#gamesSub').textContent='Hand-picked icons from gaming history';}
+ else{$('#gamesHeading').textContent=q?'Search results':currentView==='favorites'?'My favorites':currentConsole==='All'?'All games':currentConsole+' games';$('#gamesSub').textContent=list.length+' games in the library';}
+ $('#gameGrid').innerHTML=list.length?list.map(card).join(''):'<div class="empty">No games found. Try another search or platform.</div>';
+ const arcade=games.filter(g=>g.platform==='Arcade');$('#arcadeGrid').innerHTML=arcade.map(card).join('');
+ $('#popularSection').style.display=(currentView==='home'&&!q&&currentConsole==='All')?'block':'none';
+ $('#featuredSection').style.display='block';
+}
+function setView(view){currentView=view;currentConsole='All';document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.view===view));render();window.scrollTo({top:0,behavior:'smooth'});}
+function setConsole(c){currentConsole=c;currentView='all';document.querySelectorAll('.console-card').forEach(b=>b.classList.toggle('selected',b.dataset.console===c));render();$('#featuredSection').scrollIntoView({behavior:'smooth',block:'start'});}
+function openGame(id){activeGame=games.find(g=>g.id===id);if(!activeGame)return;$('#modalTitle').textContent=activeGame.title;$('#modal .modal-image').style.backgroundImage=activeGame.image?'linear-gradient(0deg,#1a211c,transparent),url("'+activeGame.image+'")':'linear-gradient(135deg,#263b2a,#151b16)';$('#modalText').textContent=activeGame.desc+'  ·  '+activeGame.platform+' · '+activeGame.year;$('#modalPlay').textContent=activeGame.romUrl?'▶ Play now':'▶ Choose your own ROM';$('#romFile').style.display=activeGame.romUrl?'none':'block';$('.rom-note').style.display=activeGame.romUrl?'none':'block';$('#modalFav').textContent=favorites.has(id)?'♥ Remove from favorites':'♡ Add to favorites';$('#modal').classList.add('open');}
+$('#gameGrid').addEventListener('click',e=>{const fav=e.target.closest('[data-fav]');if(fav){const id=Number(fav.dataset.fav);favorites.has(id)?favorites.delete(id):favorites.add(id);localStorage.setItem('rv-favorites',JSON.stringify([...favorites]));render();return;}const c=e.target.closest('[data-id]');if(c)openGame(Number(c.dataset.id));});
+$('#arcadeGrid').addEventListener('click',e=>{const fav=e.target.closest('[data-fav]');if(fav){const id=Number(fav.dataset.fav);favorites.has(id)?favorites.delete(id):favorites.add(id);localStorage.setItem('rv-favorites',JSON.stringify([...favorites]));render();return;}const c=e.target.closest('[data-id]');if(c)openGame(Number(c.dataset.id));});
+document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>setView(b.dataset.view)));
+document.querySelectorAll('[data-console]').forEach(b=>b.addEventListener('click',()=>setConsole(b.dataset.console)));
+$('#searchInput').addEventListener('input',()=>{currentView='all';currentConsole='All';render();});
+$('#heroExplore').onclick=()=>setView('all');$('#exploreBtn').onclick=()=>setView('all');$('#viewAll').onclick=()=>setView('all');$('#allPlatforms').onclick=()=>$('#platformSection').scrollIntoView({behavior:'smooth'});$('#heroPlatforms').onclick=()=>$('#platformSection').scrollIntoView({behavior:'smooth'});
+$('#closeModal').onclick=()=>$('#modal').classList.remove('open');$('#modal').addEventListener('click',e=>{if(e.target===$('#modal'))$('#modal').classList.remove('open')});
+function coreFor(platform){return ({'NES':'nes','SNES':'snes','Mega Drive':'segaMD','Game Boy':'gb','Arcade':'fbneo','PlayStation':'psx'})[platform]||'nes';}
+async function startEmulator(file){
+ if(!activeGame||!file)return;
+ const player=$('#player');$('#playerTitle').textContent=activeGame.title;
+ $('#game').innerHTML='<div style="color:#cbd5cc;padding:24px;text-align:center">Preparing game…</div>';
+ player.classList.add('open');$('#modal').classList.remove('open');
+ try{
+  let gameFile=file;
+  if(typeof file==='string'&&/\.zip(?:$|[?#])/i.test(file)){
+   const response=await fetch(file);if(!response.ok)throw new Error('Could not download game file ('+response.status+')');
+   const zip=await JSZip.loadAsync(await response.arrayBuffer());
+   const allowed=({NES:/\.nes$/i,SNES:/\.(sfc|smc)$/i,'Mega Drive':/\.(md|gen|bin)$/i,'Game Boy':/\.(gb|gbc)$/i})[activeGame.platform]||/\.(nes|sfc|smc|md|gen|bin|gb|gbc)$/i;
+   const entry=Object.values(zip.files).find(x=>!x.dir&&allowed.test(x.name));
+   if(!entry)throw new Error('No compatible game file found inside the ZIP');
+   gameFile=URL.createObjectURL(await entry.async('blob'));
+  }
+  if(currentRomUrl&&currentRomUrl.startsWith('blob:'))URL.revokeObjectURL(currentRomUrl);
+  currentRomUrl=typeof gameFile==='string'?gameFile:URL.createObjectURL(gameFile);
+  window.EJS_player='#game';window.EJS_gameUrl=currentRomUrl;window.EJS_gameName=activeGame.title;
+  window.EJS_core=coreFor(activeGame.platform);window.EJS_gameID=activeGame.id;window.EJS_pathtodata='https://cdn.emulatorjs.org/stable/data/';
+  window.EJS_startOnLoaded=true;window.EJS_color='#76b900';
+  if(emulatorScript){emulatorScript.remove();emulatorScript=null;}
+  emulatorScript=document.createElement('script');emulatorScript.src=window.EJS_pathtodata+'loader.js';
+  emulatorScript.onerror=()=>{toast('The emulator could not load. Check your connection and try again.');$('#player').classList.remove('open');};
+  document.body.appendChild(emulatorScript);
+  recent=[activeGame.id,...recent.filter(id=>id!==activeGame.id)].slice(0,30);localStorage.setItem('rv-recent',JSON.stringify(recent));
+ }catch(err){$('#player').classList.remove('open');toast('Could not start '+activeGame.title+': '+err.message);}
+}
+$('#modalPlay').onclick=()=>{if(activeGame?.romUrl){startEmulator(activeGame.romUrl);return;}const file=$('#romFile').files[0,
+ {id:11,title:"Blob Quest",platform:"NES",year:2021,genre:"Platformer",emoji:"🟣",image:"https://raw.githubusercontent.com/EmuDeck/emudeck-homebrew/main/downloaded_media/nes/titlescreens/homebrew/Blob%20Quest.png",bg:'linear-gradient(135deg,#315b4a,#17253c)',desc:"A colorful NES homebrew platform adventure.",romUrl:"https://raw.githubusercontent.com/EmuDeck/emudeck-homebrew/main/nes/Blob%20Quest.zip",license:'Homebrew · EmuDeck collection'},
+ {id:12,title:"Uwol: Quest for Money",platform:"SNES",year:2013,genre:"Platformer",emoji:"💰",image:"https://raw.githubusercontent.com/EmuDeck/emudeck-homebrew/main/downloaded_media/snes/titlescreens/homebrew/Uwol%20Quest%20for%20Money.png",bg:'linear-gradient(135deg,#315b4a,#17253c)',desc:"A quirky homebrew platform game.",romUrl:"https://raw.githubusercontent.com/EmuDeck/emudeck-homebrew/main/snes/Uwol%20Quest%20for%20Money.zip",license:'Homebrew · EmuDeck collection'},
+ {id:13,title:"Tourmaline",platform:"Mega Drive",year:2021,genre:"Puzzle",emoji:"💎",image:"https://raw.githubusercontent.com/EmuDeck/emudeck-homebrew/main/downloaded_media/genesis/titlescreens/homebrew/Tourmaline.png",bg:'linear-gradient(135deg,#315b4a,#17253c)',desc:"A polished puzzle game made for Sega Mega Drive.",romUrl:"https://raw.githubusercontent.com/EmuDeck/emudeck-homebrew/main/genesis/Tourmaline.zip",license:'Homebrew · EmuDeck collection'},
+ {id:14,title:"Tuff",platform:"Game Boy",year:2020,genre:"Action",emoji:"🦖",image:"https://raw.githubusercontent.com/EmuDeck/emudeck-homebrew/main/downloaded_media/gb/titlescreens/homebrew/tuff.png",bg:'linear-gradient(135deg,#315b4a,#17253c)',desc:"A Game Boy homebrew action game.",romUrl:"https://raw.githubusercontent.com/EmuDeck/emudeck-homebrew/main/gb/tuff.zip",license:'Homebrew · EmuDeck collection'}
 ];if(!file){$('#romFile').click();return;}startEmulator(file);};
 $('#romFile').addEventListener('change',e=>{const file=e.target.files[0];if(file)startEmulator(file);});
 $('#closePlayer').onclick=()=>{$('#player').classList.remove('open');$('#game').innerHTML='';if(currentRomUrl?.startsWith('blob:'))URL.revokeObjectURL(currentRomUrl);currentRomUrl=null;if(emulatorScript){emulatorScript.remove();emulatorScript=null;}};
 $('#modalFav').onclick=()=>{if(!activeGame)return;favorites.has(activeGame.id)?favorites.delete(activeGame.id):favorites.add(activeGame.id);localStorage.setItem('rv-favorites',JSON.stringify([...favorites]));$('#modalFav').textContent=favorites.has(activeGame.id)?'♥ Remove from favorites':'♡ Add to favorites';render();toast(favorites.has(activeGame.id)?'Added to favorites':'Removed from favorites');};
 $('#aboutBtn').onclick=()=>toast('RetroVerse — a home for gaming legends.');
 render();
+
 </script>
 </body>
 </html>
