@@ -80,7 +80,8 @@
   </main>
 </div>
 <div class="toast" id="toast"></div>
-<div class="modal-backdrop" id="modal"><div class="modal"><div class="modal-image"></div><div class="modal-body"><button class="close" id="closeModal" aria-label="Close">×</button><div class="eyebrow">RETROVERSE GAME LIBRARY</div><h2 id="modalTitle">Game title</h2><p id="modalText">Game details</p><div class="modal-actions"><button class="primary-btn" id="modalPlay">▶ Play now</button><button class="secondary-btn" id="modalFav">♡ Add to favorites</button></div><input class="rom-input" id="romFile" type="file" accept=".nes,.smc,.sfc,.md,.gen,.bin,.gb,.gbc,.gba,.zip,.7z,.iso,.cue,.chd" /><p class="rom-note">Select a game file you legally own or are authorized to use. The file stays in your browser and is not uploaded.</p></div></div></div><div class="player-backdrop" id="player"><div class="player-top"><strong id="playerTitle">RetroVerse Player</strong><span>Runs locally in your browser</span><button id="closePlayer">✕ Close player</button></div><div class="player-screen"><div id="game"></div></div><div class="player-help">Tip: use the emulator menu for controls and save states. Some systems may require a BIOS file.</div></div>
+<div class="modal-backdrop" id="modal"><div class="modal"><div class="modal-image"></div><div class="modal-body"><button class="close" id="closeModal" aria-label="Close">×</button><div class="eyebrow">RETROVERSE GAME LIBRARY</div><h2 id="modalTitle">Game title</h2><p id="modalText">Game details</p><div class="modal-actions"><button class="primary-btn" id="modalPlay">▶ Play now</button><button class="secondary-btn" id="modalFav">♡ Add to favorites</button></div><input class="rom-input" id="romFile" type="file" accept=".nes,.smc,.sfc,.md,.gen,.bin,.gb,.gbc,.gba,.zip,.7z,.iso,.cue,.chd" /><p class="rom-note">For games without an included homebrew ROM, choose a game file you legally own. It stays in your browser and is not uploaded.</p></div></div></div><div class="player-backdrop" id="player"><div class="player-top"><strong id="playerTitle">RetroVerse Player</strong><span>Runs locally in your browser</span><button id="closePlayer">✕ Close player</button></div><div class="player-screen"><div id="game"></div></div><div class="player-help">Tip: use the emulator menu for controls and save states. Some systems may require a BIOS file.</div></div>
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
 <script>
 const games=[
  {id:1,title:'Super Mario Bros.',platform:'NES',year:1985,genre:'Platformer',emoji:'🍄',image:'https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_Entertainment_System/master/Named_Boxarts/Super%20Mario%20Bros.%20(World).png',bg:'linear-gradient(135deg,#235b3c,#142a42)',desc:'Run, jump and explore the Mushroom Kingdom in one of the most influential platform games ever made.'},
@@ -93,11 +94,11 @@ const games=[
  {id:8,title:'Castlevania',platform:'NES',year:1986,genre:'Action',emoji:'🦇',image:'https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_Entertainment_System/master/Named_Boxarts/Castlevania%20(USA).png',bg:'linear-gradient(135deg,#542d54,#20202c)',desc:'Enter Dracula’s castle in a gothic action classic.'},
  {id:9,title:'Metal Slug',platform:'Arcade',year:1996,genre:'Run & Gun',emoji:'💥',image:'https://thumbnails.libretro.com/SNK%20-%20Neo%20Geo/Named_Boxarts/Metal%20Slug%20-%20Super%20Vehicle-001.png',bg:'linear-gradient(135deg,#5e7130,#8a422c)',desc:'Blast through spectacular stages in this beloved run-and-gun arcade series.'},
  {id:10,title:'Final Fantasy VII',platform:'PlayStation',year:1997,genre:'RPG',emoji:'☄️',image:'https://thumbnails.libretro.com/Sony%20-%20PlayStation/Named_Boxarts/Final%20Fantasy%20VII%20(USA)%20(Disc%201).png',bg:'linear-gradient(135deg,#284b68,#34314e)',desc:'Join Cloud and friends in an unforgettable role-playing adventure.'},
- {id:11,title:'Space Gulls',platform:'NES',year:2021,genre:'Arcade shooter',emoji:'🚀',bg:'linear-gradient(135deg,#235b6a,#142a42)',desc:'A fast homebrew NES arcade shooter by Morphcat Games. Free homebrew release.',romUrl:'https://raw.githubusercontent.com/EmuDeck/emudeck-homebrew/main/nes/Space%20Gulls.zip',license:'Homebrew · EmuDeck collection'},
- {id:12,title:'Blob Quest',platform:'NES',year:2020,genre:'Puzzle platformer',emoji:'🟢',bg:'linear-gradient(135deg,#276b4a,#142a42)',desc:'A compact homebrew NES adventure by Tom Livak.',romUrl:'https://raw.githubusercontent.com/EmuDeck/emudeck-homebrew/main/nes/Blob%20Quest.zip',license:'Homebrew · EmuDeck collection'},
- {id:13,title:'Uwol: Quest for Money',platform:'SNES',year:2013,genre:'Platformer',emoji:'💰',bg:'linear-gradient(135deg,#6b5427,#263c25)',desc:'A homebrew platform adventure from The Mojon Twins, distributed in the EmuDeck homebrew collection.',romUrl:'https://raw.githubusercontent.com/EmuDeck/emudeck-homebrew/main/snes/Uwol%20Quest%20for%20Money.zip',license:'Homebrew · EmuDeck collection'},
- {id:14,title:'Tourmaline',platform:'Mega Drive',year:2020,genre:'Puzzle',emoji:'💎',bg:'linear-gradient(135deg,#315b88,#17253c)',desc:'A retro puzzle homebrew from RetroSouls for Sega Genesis/Mega Drive.',romUrl:'https://raw.githubusercontent.com/EmuDeck/emudeck-homebrew/main/genesis/Tourmaline.zip',license:'Homebrew · EmuDeck collection'},
- {id:15,title:'Tuff',platform:'Game Boy',year:2018,genre:'Action',emoji:'⚔️',bg:'linear-gradient(135deg,#58723a,#25342a)',desc:'A Game Boy homebrew game by Ivo Wetzel.',romUrl:'https://raw.githubusercontent.com/EmuDeck/emudeck-homebrew/main/gb/tuff.zip',license:'Homebrew · EmuDeck collection'}
+ {id:11,title:'Space Gulls',platform:'NES',year:2021,genre:'Arcade shooter',emoji:'🚀',image:'https://raw.githubusercontent.com/EmuDeck/emudeck-homebrew/main/downloaded_media/nes/miximages/homebrew/Space%20Gulls.png',bg:'linear-gradient(135deg,#235b6a,#142a42)',desc:'A fast homebrew NES arcade shooter by Morphcat Games. Free homebrew release.',romUrl:'https://raw.githubusercontent.com/EmuDeck/emudeck-homebrew/main/nes/Space%20Gulls.zip',license:'Homebrew · EmuDeck collection'},
+ {id:12,title:'Blob Quest',platform:'NES',year:2020,genre:'Puzzle platformer',emoji:'🟢',image:'https://raw.githubusercontent.com/EmuDeck/emudeck-homebrew/main/downloaded_media/nes/miximages/homebrew/Blob%20Quest.png',bg:'linear-gradient(135deg,#276b4a,#142a42)',desc:'A compact homebrew NES adventure by Tom Livak.',romUrl:'https://raw.githubusercontent.com/EmuDeck/emudeck-homebrew/main/nes/Blob%20Quest.zip',license:'Homebrew · EmuDeck collection'},
+ {id:13,title:'Uwol: Quest for Money',platform:'SNES',year:2013,genre:'Platformer',emoji:'💰',image:'https://raw.githubusercontent.com/EmuDeck/emudeck-homebrew/main/downloaded_media/snes/miximages/homebrew/Uwol%20Quest%20for%20Money.png',bg:'linear-gradient(135deg,#6b5427,#263c25)',desc:'A homebrew platform adventure from The Mojon Twins, distributed in the EmuDeck homebrew collection.',romUrl:'https://raw.githubusercontent.com/EmuDeck/emudeck-homebrew/main/snes/Uwol%20Quest%20for%20Money.zip',license:'Homebrew · EmuDeck collection'},
+ {id:14,title:'Tourmaline',platform:'Mega Drive',year:2020,genre:'Puzzle',emoji:'💎',image:'https://raw.githubusercontent.com/EmuDeck/emudeck-homebrew/main/downloaded_media/genesis/miximages/homebrew/Tourmaline.png',bg:'linear-gradient(135deg,#315b88,#17253c)',desc:'A retro puzzle homebrew from RetroSouls for Sega Genesis/Mega Drive.',romUrl:'https://raw.githubusercontent.com/EmuDeck/emudeck-homebrew/main/genesis/Tourmaline.zip',license:'Homebrew · EmuDeck collection'},
+ {id:15,title:'Tuff',platform:'Game Boy',year:2018,genre:'Action',emoji:'⚔️',image:'https://raw.githubusercontent.com/EmuDeck/emudeck-homebrew/main/downloaded_media/gb/miximages/homebrew/tuff.png',bg:'linear-gradient(135deg,#58723a,#25342a)',desc:'A Game Boy homebrew game by Ivo Wetzel.',romUrl:'https://raw.githubusercontent.com/EmuDeck/emudeck-homebrew/main/gb/tuff.zip',license:'Homebrew · EmuDeck collection'}
 ];
 let favorites=new Set(JSON.parse(localStorage.getItem('rv-favorites')||'[]')), recent=JSON.parse(localStorage.getItem('rv-recent')||'[]'), currentView='home', currentConsole='All', activeGame=null, currentRomUrl=null, emulatorScript=null;
 const $=s=>document.querySelector(s);
@@ -123,21 +124,33 @@ document.querySelectorAll('[data-console]').forEach(b=>b.addEventListener('click
 $('#searchInput').addEventListener('input',()=>{currentView='all';currentConsole='All';render();});
 $('#heroExplore').onclick=()=>setView('all');$('#exploreBtn').onclick=()=>setView('all');$('#viewAll').onclick=()=>setView('all');$('#allPlatforms').onclick=()=>$('#platformSection').scrollIntoView({behavior:'smooth'});$('#heroPlatforms').onclick=()=>$('#platformSection').scrollIntoView({behavior:'smooth'});
 $('#closeModal').onclick=()=>$('#modal').classList.remove('open');$('#modal').addEventListener('click',e=>{if(e.target===$('#modal'))$('#modal').classList.remove('open')});
-function coreFor(platform){return ({'NES':'nes','SNES':'snes','Mega Drive':'segaMD','Game Boy':'gb','Arcade':'arcade','PlayStation':'psx'})[platform]||'nes';}
-function startEmulator(file){
+function coreFor(platform){return ({'NES':'nes','SNES':'snes','Mega Drive':'segaMD','Game Boy':'gb','Arcade':'fbneo','PlayStation':'psx'})[platform]||'nes';}
+async function startEmulator(file){
  if(!activeGame||!file)return;
  const player=$('#player');$('#playerTitle').textContent=activeGame.title;
- if(currentRomUrl&&currentRomUrl.startsWith('blob:'))URL.revokeObjectURL(currentRomUrl);
- currentRomUrl=typeof file==='string'?file:URL.createObjectURL(file);
- window.EJS_player='#game';window.EJS_gameUrl=currentRomUrl;window.EJS_gameName=activeGame.title;
- window.EJS_core=coreFor(activeGame.platform);window.EJS_gameID=activeGame.id;window.EJS_pathtodata='https://cdn.emulatorjs.org/stable/data/';
- window.EJS_startOnLoaded=true;window.EJS_color='#76b900';
- $('#game').innerHTML='';player.classList.add('open');$('#modal').classList.remove('open');
- if(emulatorScript){emulatorScript.remove();emulatorScript=null;}
- emulatorScript=document.createElement('script');emulatorScript.src=window.EJS_pathtodata+'loader.js';
- emulatorScript.onerror=()=>{toast('The emulator could not load. Check your connection and try again.');$('#player').classList.remove('open');};
- document.body.appendChild(emulatorScript);
- recent=[activeGame.id,...recent.filter(id=>id!==activeGame.id)].slice(0,30);localStorage.setItem('rv-recent',JSON.stringify(recent));
+ $('#game').innerHTML='<div style="color:#cbd5cc;padding:24px;text-align:center">Preparing game…</div>';
+ player.classList.add('open');$('#modal').classList.remove('open');
+ try{
+  let gameFile=file;
+  if(typeof file==='string'&&/\.zip(?:$|[?#])/i.test(file)){
+   const response=await fetch(file);if(!response.ok)throw new Error('Could not download game file ('+response.status+')');
+   const zip=await JSZip.loadAsync(await response.arrayBuffer());
+   const allowed=({NES:/\.nes$/i,SNES:/\.(sfc|smc)$/i,'Mega Drive':/\.(md|gen|bin)$/i,'Game Boy':/\.(gb|gbc)$/i})[activeGame.platform]||/\.(nes|sfc|smc|md|gen|bin|gb|gbc)$/i;
+   const entry=Object.values(zip.files).find(x=>!x.dir&&allowed.test(x.name));
+   if(!entry)throw new Error('No compatible game file found inside the ZIP');
+   gameFile=URL.createObjectURL(await entry.async('blob'));
+  }
+  if(currentRomUrl&&currentRomUrl.startsWith('blob:'))URL.revokeObjectURL(currentRomUrl);
+  currentRomUrl=typeof gameFile==='string'?gameFile:URL.createObjectURL(gameFile);
+  window.EJS_player='#game';window.EJS_gameUrl=currentRomUrl;window.EJS_gameName=activeGame.title;
+  window.EJS_core=coreFor(activeGame.platform);window.EJS_gameID=activeGame.id;window.EJS_pathtodata='https://cdn.emulatorjs.org/stable/data/';
+  window.EJS_startOnLoaded=true;window.EJS_color='#76b900';
+  if(emulatorScript){emulatorScript.remove();emulatorScript=null;}
+  emulatorScript=document.createElement('script');emulatorScript.src=window.EJS_pathtodata+'loader.js';
+  emulatorScript.onerror=()=>{toast('The emulator could not load. Check your connection and try again.');$('#player').classList.remove('open');};
+  document.body.appendChild(emulatorScript);
+  recent=[activeGame.id,...recent.filter(id=>id!==activeGame.id)].slice(0,30);localStorage.setItem('rv-recent',JSON.stringify(recent));
+ }catch(err){$('#player').classList.remove('open');toast('Could not start '+activeGame.title+': '+err.message);}
 }
 $('#modalPlay').onclick=()=>{if(activeGame?.romUrl){startEmulator(activeGame.romUrl);return;}const file=$('#romFile').files[0];if(!file){$('#romFile').click();return;}startEmulator(file);};
 $('#romFile').addEventListener('change',e=>{const file=e.target.files[0];if(file)startEmulator(file);});
