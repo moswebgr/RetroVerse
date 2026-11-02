@@ -1,39 +1,37 @@
 # RetroVerse
 
-A static retro-gaming library with a dark, cinematic interface inspired by modern cloud-gaming platforms.
+RetroVerse is a static game catalog with an optional Vercel serverless API for community ROM uploads.
 
-## Run locally
+## ROM upload API
 
-Open `index.html` in a modern browser. No build step, account system, database, or application server is required.
+The API lives at `/api/roms` and is intended to run on **Vercel** (GitHub Pages cannot execute server-side API routes).
 
-## Deploy with GitHub Pages
+- `GET /api/roms` — returns the public ROM catalog from Vercel Blob.
+- `POST /api/roms` — creates a secure client-upload token using Vercel Blob's client upload flow. The request body is the body expected by `handleUpload`.
 
-1. Open **Settings → Pages** in this repository.
-2. Under **Build and deployment**, choose **Deploy from a branch**.
-3. Select **main** and **/(root)**, then save.
-4. GitHub Pages will publish the site at the repository's Pages URL.
+### Required setup
 
-## Current features
+1. Import this GitHub repository into Vercel and deploy it as a Node.js project.
+2. Create a **public Vercel Blob store** for ROMs.
+3. Add the store's `BLOB_READ_WRITE_TOKEN` to the Vercel project environment variables (Production and Preview as appropriate).
+4. Redeploy after adding the token.
+5. Point the website's API base URL to the deployed Vercel domain (or serve the site from the same Vercel project).
 
-- Responsive gaming-library interface
-- Search, platform filters, game details and favorites
-- Favorites and recently played list stored locally in the visitor's browser
-- EmulatorJS browser player integration for the listed platforms
-- ROM selection from the visitor's own device; ROM files are not uploaded to this repository or a RetroVerse server
-- No visitor accounts or login
+### Client upload flow
 
-## Playing games
+Use `@vercel/blob/client`'s `upload()` in the browser and pass `/api/roms` as the handle-upload endpoint. The client payload must include:
 
-Choose a game card, select **Choose ROM & play**, and pick a compatible game file from your device. The emulator assets load from the EmulatorJS CDN. Supported core mappings currently include NES, SNES, Sega Mega Drive, Game Boy, Arcade (MAME 2003 Plus), and PlayStation (PS1).
+```json
+{
+  "title": "Example Homebrew Game",
+  "platform": "nes",
+  "extension": "nes",
+  "rightsConfirmed": true
+}
+```
 
-Some systems or games may require additional BIOS files or specific ROM formats. Arcade ROM sets in particular must match the selected MAME core. Browser/device performance varies. The emulator integration should be tested with the exact ROM formats and devices you plan to support.
+Supported platform identifiers: `nes`, `game-boy`, `game-boy-color`, `game-boy-advance`, `master-system`, `game-gear`, `mega-drive`, `super-nintendo`, `nintendo-64`, `nintendo-ds`, `pc-engine`, `playstation`.
 
-Only use game files and BIOS files that you own or are legally authorized to use. RetroVerse does not distribute copyrighted ROMs or BIOS files.
+The API accepts a limited set of ROM extensions and enforces a 64 MiB maximum upload size. The uploader must affirm they have the right to share the file. This affirmation is not a substitute for moderation or a legal review; add reporting and takedown handling before opening uploads broadly.
 
-## Privacy and storage
-
-RetroVerse has no user registration or login. Favorites and recently played IDs are saved in the browser's local storage on that device. Browser emulator save states are managed by the emulator/browser and may not sync to other devices. Clearing browser data can remove local information.
-
-## Architecture
-
-GitHub Pages serves the static site. Emulation runs client-side in the visitor's browser. There is no RetroVerse application backend or user database.
+**Important:** this API stores uploaded files in Vercel Blob, not in the Git repository. GitHub Pages alone cannot host this API or accept uploads.
