@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#101311" />
+  <meta name="description" content="RetroVerse — discover and relive classic games from legendary consoles." />
+  <title>RetroVerse — Play the classics</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
+    :root{--bg:#101311;--panel:#181d1a;--panel2:#202722;--text:#f4f7f4;--muted:#9ba69e;--green:#76b900;--green2:#91d32b;--line:rgba(255,255,255,.08);--sidebar:244px}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh}button,input{font:inherit}button{cursor:pointer}
+    .app{min-height:100vh}.sidebar{position:fixed;inset:0 auto 0 0;width:var(--sidebar);background:#141916;border-right:1px solid var(--line);padding:26px 18px;display:flex;flex-direction:column;z-index:20}
+    .brand{display:flex;align-items:center;gap:11px;padding:0 10px 34px;text-decoration:none;color:var(--text)}.brand-mark{width:35px;height:35px;border-radius:10px;background:var(--green);display:grid;place-items:center;color:#10150a;font-size:20px;font-weight:900;box-shadow:0 0 24px #76b90035}.brand-name{font:700 20px 'Space Grotesk';letter-spacing:-.8px}.brand-name span{color:var(--green2)}
+    .nav-label{font-size:10px;font-weight:800;letter-spacing:1.5px;color:#6f7a72;padding:0 12px 11px}.nav{display:grid;gap:5px}.nav button{border:0;background:transparent;color:#aab4ac;display:flex;align-items:center;gap:13px;padding:11px 13px;border-radius:9px;text-align:left;font-size:13px;font-weight:600;transition:.2s}.nav button:hover,.nav button.active{background:#293323;color:#fff}.nav button.active{box-shadow:inset 3px 0 var(--green)}.nav-icon{width:18px;text-align:center;font-size:16px}.side-divider{height:1px;background:var(--line);margin:25px 4px}.console-nav{display:grid;gap:3px}.console-nav button{border:0;background:transparent;color:#9ba69e;padding:9px 12px;border-radius:8px;text-align:left;font-size:12px;display:flex;justify-content:space-between}.console-nav button:hover{background:#222a24;color:#fff}.count{color:#68746b;font-size:10px}.sidebar-bottom{margin-top:auto;background:linear-gradient(145deg,#26351d,#1a2118);border:1px solid #435b2b;border-radius:12px;padding:15px}.sidebar-bottom strong{font-size:12px}.sidebar-bottom p{color:#a6b29e;font-size:11px;line-height:1.5;margin:7px 0 12px}.sidebar-bottom button{border:0;border-radius:6px;background:var(--green);color:#10150a;padding:8px 11px;font-size:11px;font-weight:800}
+    .main{margin-left:var(--sidebar);min-height:100vh}.topbar{height:76px;display:flex;align-items:center;gap:22px;padding:0 42px;border-bottom:1px solid var(--line);position:sticky;top:0;background:#101311ed;backdrop-filter:blur(18px);z-index:15}.mobile-brand{display:none}.search{position:relative;max-width:470px;flex:1}.search input{width:100%;height:42px;background:#1c221e;border:1px solid #2b342d;border-radius:8px;padding:0 15px 0 42px;color:#fff;outline:none;font-size:12px}.search input:focus{border-color:#668f32}.search-icon{position:absolute;left:15px;top:12px;color:#89948b}.top-actions{margin-left:auto;display:flex;align-items:center;gap:18px}.top-link{border:0;background:transparent;color:#aeb8b0;font-size:12px;font-weight:600}.top-link:hover{color:white}.avatar{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#34432b;color:#c5f18c;font-size:12px;font-weight:800;border:1px solid #526e37}
+    .content{padding:30px 42px 70px;max-width:1600px;margin:auto}.hero{height:360px;border-radius:14px;overflow:hidden;position:relative;background:linear-gradient(90deg,#111810 0%,rgba(15,22,16,.92) 30%,rgba(15,22,16,.25) 75%),linear-gradient(0deg,#101311 0%,transparent 50%),url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1800&q=85') center 42%/cover;display:flex;align-items:center;padding:48px 52px;border:1px solid #ffffff12}.hero:after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 78% 50%,transparent 0%,#0c120c33 65%);pointer-events:none}.hero-copy{position:relative;z-index:1;max-width:490px}.eyebrow{display:flex;align-items:center;gap:8px;color:#a8d86c;font-size:10px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase}.eyebrow:before{content:"";width:19px;height:2px;background:var(--green)}h1{font:700 clamp(32px,4vw,52px)/1.04 'Space Grotesk';letter-spacing:-2px;margin:17px 0 13px}.hero-copy p{color:#bdc7bf;font-size:13px;line-height:1.7;max-width:390px;margin:0 0 24px}.hero-actions{display:flex;gap:11px}.primary-btn,.secondary-btn{border:0;border-radius:6px;padding:12px 19px;font-size:12px;font-weight:800;display:inline-flex;align-items:center;gap:9px}.primary-btn{background:var(--green);color:#10150a}.primary-btn:hover{background:var(--green2);transform:translateY(-1px)}.secondary-btn{background:#ffffff17;color:white;border:1px solid #ffffff25}.secondary-btn:hover{background:#ffffff25}.hero-tag{position:absolute;right:28px;bottom:24px;z-index:1;color:#d2dbd2;font-size:10px;letter-spacing:1px}
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:19px 0 34px}.stat{background:#171d19;border:1px solid var(--line);border-radius:9px;padding:14px 17px;display:flex;align-items:center;gap:13px}.stat-icon{width:34px;height:34px;border-radius:8px;background:#293820;color:#a4d56b;display:grid;place-items:center;font-size:16px}.stat strong{font:700 17px 'Space Grotesk';display:block}.stat span{font-size:10px;color:#8f9a92}
+    .section{margin-top:30px}.section-head{display:flex;align-items:end;justify-content:space-between;margin-bottom:15px}.section-title{font:700 19px 'Space Grotesk';letter-spacing:-.5px;margin:0}.section-sub{font-size:11px;color:#87928a;margin-top:5px}.see-all{border:0;background:transparent;color:#a8d86c;font-size:11px;font-weight:700}.see-all:hover{color:white}.console-strip{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}.console-card{border:1px solid var(--line);background:linear-gradient(145deg,#202922,#171d19);border-radius:9px;padding:16px 12px;min-height:100px;text-align:center;transition:.2s;color:white}.console-card:hover,.console-card.selected{border-color:#6e9d35;background:#283522;transform:translateY(-2px)}.console-art{font-size:27px;display:block;margin-bottom:9px;filter:drop-shadow(0 5px 8px #0008)}.console-card strong{font-size:11px;display:block}.console-card small{font-size:9px;color:#8e9b91;display:block;margin-top:4px}
+    .game-row{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}.game-card{min-width:0;cursor:pointer;position:relative}.cover{height:148px;border-radius:9px;overflow:hidden;position:relative;background:#263027;border:1px solid #ffffff12;transition:.22s}.cover img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}.game-card:hover .cover{border-color:#80b83d;transform:translateY(-3px)}.game-card:hover .cover img{transform:scale(1.06)}.cover:after{content:"";position:absolute;inset:35% 0 0;background:linear-gradient(0deg,#0a0d0a9c,transparent)}.cover-art{position:absolute;inset:0;display:grid;place-items:center;font-size:46px}.cover-title{position:absolute;z-index:1;left:12px;bottom:11px;font:700 15px 'Space Grotesk';text-shadow:0 2px 8px #000}.game-meta{display:flex;justify-content:space-between;align-items:center;padding:9px 2px 0}.game-meta strong{font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.game-meta span{font-size:9px;color:#8d998f}.game-platform{font-size:9px;color:#9aa69c;margin-top:4px;padding-left:2px}.fav{position:absolute;z-index:3;right:8px;top:8px;width:28px;height:28px;border-radius:50%;border:1px solid #ffffff35;background:#101610aa;color:white;display:grid;place-items:center;font-size:14px;opacity:0;transition:.2s}.game-card:hover .fav,.fav.on{opacity:1}.fav.on{color:#a6db62}
+    .empty{padding:35px;text-align:center;color:#9ba69e;border:1px dashed #38443a;border-radius:10px;font-size:12px;grid-column:1/-1}.footer{border-top:1px solid var(--line);margin-top:55px;padding:22px 0;color:#718076;font-size:10px;display:flex;justify-content:space-between}.toast{position:fixed;bottom:24px;right:24px;background:#263522;border:1px solid #628a36;color:#e8f5dc;padding:12px 17px;border-radius:8px;font-size:12px;z-index:60;opacity:0;transform:translateY(10px);transition:.2s;pointer-events:none}.toast.show{opacity:1;transform:translateY(0)}.modal-backdrop{position:fixed;inset:0;background:#000b;z-index:50;display:none;place-items:center;padding:20px}.modal-backdrop.open{display:grid}.modal{width:min(480px,100%);background:#1a211c;border:1px solid #46533f;border-radius:14px;overflow:hidden;box-shadow:0 24px 80px #0009}.modal-image{height:190px;background:linear-gradient(0deg,#1a211c,transparent),url('https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1000&q=80') center/cover}.modal-body{padding:22px}.modal-body h2{font:700 24px 'Space Grotesk';margin:0 0 8px}.modal-body p{font-size:12px;line-height:1.6;color:#aab5ac}.modal-actions{display:flex;gap:10px;margin-top:18px}.close{margin-left:auto;border:0;background:transparent;color:#aeb8b0;font-size:20px;float:right}
+    @media(max-width:1100px){:root{--sidebar:210px}.content{padding:26px}.topbar{padding:0 26px}.game-row{grid-template-columns:repeat(4,minmax(0,1fr))}.console-strip{grid-template-columns:repeat(3,minmax(0,1fr))}.hero{height:330px}}
+    @media(max-width:760px){:root{--sidebar:0px}.sidebar{display:none}.main{margin-left:0}.topbar{height:64px;padding:0 17px;gap:12px}.mobile-brand{display:flex;align-items:center;gap:8px;font:700 17px 'Space Grotesk';white-space:nowrap}.mobile-brand b{color:var(--green2)}.mobile-brand .brand-mark{width:29px;height:29px;font-size:16px}.search{max-width:none}.search input{height:38px;font-size:11px}.search-icon{top:10px}.top-link{display:none}.top-actions{gap:9px}.avatar{width:30px;height:30px}.content{padding:18px 16px 50px}.hero{height:340px;padding:28px 24px;background-position:58% center}.hero-copy{max-width:340px}.hero-copy p{font-size:12px}.hero-tag{font-size:8px;right:14px;bottom:13px}.stats{grid-template-columns:repeat(2,1fr);gap:8px;margin:12px 0 28px}.stat{padding:11px}.stat strong{font-size:15px}.console-strip{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.console-card{min-height:88px;padding:12px 6px}.console-art{font-size:23px}.game-row{grid-template-columns:repeat(2,minmax(0,1fr));gap:17px 11px}.cover{height:132px}.section-title{font-size:17px}.footer{gap:12px;flex-direction:column}.game-meta strong{font-size:10px}.fav{opacity:1}}
+    @media(max-width:390px){.mobile-brand{font-size:0}.mobile-brand .brand-mark{font-size:16px}.hero{height:320px}.hero h1{font-size:35px}.console-card strong{font-size:10px}}
+  </style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <a class="brand" href="#" aria-label="RetroVerse home"><span class="brand-mark">▶</span><span class="brand-name">RETRO<span>VERSE</span></span></a>
+    <div class="nav-label">DISCOVER</div>
+    <nav class="nav">
+      <button class="active" data-view="home"><span class="nav-icon">⌂</span> Home</button>
+      <button data-view="all"><span class="nav-icon">▦</span> All games</button>
+      <button data-view="favorites"><span class="nav-icon">♡</span> My favorites</button>
+      <button data-view="recent"><span class="nav-icon">◷</span> Recently added</button>
+    </nav>
+    <div class="side-divider"></div>
+    <div class="nav-label">PLATFORMS</div>
+    <nav class="console-nav" id="sideConsoles">
+      <button data-console="All">All platforms <span class="count">08</span></button>
+      <button data-console="NES">Nintendo Entertainment System <span class="count">NES</span></button>
+      <button data-console="SNES">Super Nintendo <span class="count">SNES</span></button>
+      <button data-console="Mega Drive">Sega Mega Drive <span class="count">MD</span></button>
+      <button data-console="Game Boy">Game Boy <span class="count">GB</span></button>
+      <button data-console="Arcade">Arcade classics <span class="count">AR</span></button>
+      <button data-console="PlayStation">PlayStation <span class="count">PS1</span></button>
+    </nav>
+    <div class="sidebar-bottom"><strong>THE GOLDEN AGE OF GAMING</strong><p>One library. Legendary games. Endless nostalgia.</p><button id="exploreBtn">Explore library ↗</button></div>
+  </aside>
+  <main class="main">
+    <header class="topbar">
+      <div class="mobile-brand"><span class="brand-mark">▶</span> RETRO<b>VERSE</b></div>
+      <label class="search"><span class="search-icon">⌕</span><input id="searchInput" type="search" placeholder="Search games, consoles..." autocomplete="off" /></label>
+      <div class="top-actions"><button class="top-link" data-view="all">Browse library</button><button class="top-link" id="aboutBtn">About</button><div class="avatar" title="Guest profile">G</div></div>
+    </header>
+    <div class="content" id="mainContent">
+      <section class="hero">
+        <div class="hero-copy"><div class="eyebrow">YOUR NEXT NOSTALGIA TRIP</div><h1>LEGENDS<br/>NEVER<br/>GET OLD.</h1><p>Rediscover the games that shaped generations. Explore iconic worlds, timeless adventures and arcade legends — all in one place.</p><div class="hero-actions"><button class="primary-btn" id="heroExplore">Explore games <span>→</span></button><button class="secondary-btn" id="heroPlatforms">Browse platforms</button></div></div>
+        <div class="hero-tag">PRESS START · RELIVE THE CLASSICS</div>
+      </section>
+      <section class="stats">
+        <div class="stat"><div class="stat-icon">▣</div><div><strong>8</strong><span>PLATFORMS</span></div></div>
+        <div class="stat"><div class="stat-icon">◈</div><div><strong>1,000s</strong><span>GAMING MEMORIES</span></div></div>
+        <div class="stat"><div class="stat-icon">⌘</div><div><strong>1 click</strong><span>TO YOUR NEXT ADVENTURE</span></div></div>
+        <div class="stat"><div class="stat-icon">◎</div><div><strong>Browser</strong><span>NO INSTALL REQUIRED</span></div></div>
+      </section>
+      <section class="section" id="platformSection"><div class="section-head"><div><h2 class="section-title">Explore platforms</h2><div class="section-sub">Choose your generation</div></div><button class="see-all" id="allPlatforms">VIEW ALL →</button></div><div class="console-strip" id="consoleStrip">
+        <button class="console-card" data-console="NES"><span class="console-art">🎮</span><strong>Nintendo NES</strong><small>8-BIT CLASSICS</small></button>
+        <button class="console-card" data-console="SNES"><span class="console-art">🕹️</span><strong>Super Nintendo</strong><small>16-BIT ERA</small></button>
+        <button class="console-card" data-console="Mega Drive"><span class="console-art">👾</span><strong>Sega Mega Drive</strong><small>16-BIT LEGENDS</small></button>
+        <button class="console-card" data-console="Game Boy"><span class="console-art">📟</span><strong>Game Boy</strong><small>HANDHELD ICONS</small></button>
+        <button class="console-card" data-console="Arcade"><span class="console-art">👾</span><strong>Arcade</strong><small>COIN-OP GREATS</small></button>
+        <button class="console-card" data-console="PlayStation"><span class="console-art">💿</span><strong>PlayStation</strong><small>3D REVOLUTION</small></button>
+      </div></section>
+      <section class="section" id="featuredSection"><div class="section-head"><div><h2 class="section-title" id="gamesHeading">Featured classics</h2><div class="section-sub" id="gamesSub">Hand-picked icons from gaming history</div></div><button class="see-all" id="viewAll">VIEW ALL GAMES →</button></div><div class="game-row" id="gameGrid"></div></section>
+      <section class="section" id="popularSection"><div class="section-head"><div><h2 class="section-title">Arcade essentials</h2><div class="section-sub">The games that started it all</div></div><button class="see-all" data-view="all">SEE LIBRARY →</button></div><div class="game-row" id="arcadeGrid"></div></section>
+      <footer class="footer"><span>© 2026 RETROVERSE. MADE FOR THE LOVE OF GAMES.</span><span>PLAY THE CLASSICS · RELIVE THE LEGENDS</span></footer>
+    </div>
+  </main>
+</div>
+<div class="toast" id="toast"></div>
+<div class="modal-backdrop" id="modal"><div class="modal"><div class="modal-image"></div><div class="modal-body"><button class="close" id="closeModal" aria-label="Close">×</button><div class="eyebrow">RETROVERSE GAME LIBRARY</div><h2 id="modalTitle">Game title</h2><p id="modalText">Game details</p><div class="modal-actions"><button class="primary-btn" id="modalPlay">Coming soon</button><button class="secondary-btn" id="modalFav">♡ Add to favorites</button></div></div></div></div>
+<script>
+const games=[
+ {id:1,title:'Super Mario Bros.',platform:'NES',year:1985,genre:'Platformer',emoji:'🍄',bg:'linear-gradient(135deg,#235b3c,#142a42)',desc:'Run, jump and explore the Mushroom Kingdom in one of the most influential platform games ever made.'},
+ {id:2,title:'The Legend of Zelda',platform:'NES',year:1986,genre:'Adventure',emoji:'🗡️',bg:'linear-gradient(135deg,#9b782b,#263c25)',desc:'Set out on a legendary quest through Hyrule and discover secrets in a timeless adventure.'},
+ {id:3,title:'Sonic the Hedgehog',platform:'Mega Drive',year:1991,genre:'Platformer',emoji:'💨',bg:'linear-gradient(135deg,#176bb1,#e5a62d)',desc:'Speed through colorful zones with the world’s fastest blue hedgehog.'},
+ {id:4,title:'Street Fighter II',platform:'SNES',year:1991,genre:'Fighting',emoji:'🥋',bg:'linear-gradient(135deg,#b84a2c,#3d274c)',desc:'Choose your fighter and master the moves that defined competitive fighting games.'},
+ {id:5,title:'Pokémon Red',platform:'Game Boy',year:1996,genre:'RPG',emoji:'⚡',bg:'linear-gradient(135deg,#b33d42,#3a2634)',desc:'Begin your journey, catch Pokémon and become the ultimate trainer.'},
+ {id:6,title:'Pac-Man',platform:'Arcade',year:1980,genre:'Arcade',emoji:'🟡',bg:'linear-gradient(135deg,#1d3474,#5b2c67)',desc:'Navigate the maze, collect every dot and stay one step ahead of the ghosts.'},
+ {id:7,title:'Super Metroid',platform:'SNES',year:1994,genre:'Action',emoji:'🚀',bg:'linear-gradient(135deg,#8b3c4d,#202b50)',desc:'Explore an atmospheric alien world in this landmark action-adventure.'},
+ {id:8,title:'Castlevania',platform:'NES',year:1986,genre:'Action',emoji:'🦇',bg:'linear-gradient(135deg,#542d54,#20202c)',desc:'Enter Dracula’s castle in a gothic action classic.'},
+ {id:9,title:'Metal Slug',platform:'Arcade',year:1996,genre:'Run & Gun',emoji:'💥',bg:'linear-gradient(135deg,#5e7130,#8a422c)',desc:'Blast through spectacular stages in this beloved run-and-gun arcade series.'},
+ {id:10,title:'Final Fantasy VII',platform:'PlayStation',year:1997,genre:'RPG',emoji:'☄️',bg:'linear-gradient(135deg,#284b68,#34314e)',desc:'Join Cloud and friends in an unforgettable role-playing adventure.'}
+];
+let favorites=new Set(), currentView='home', currentConsole='All', activeGame=null;
+const $=s=>document.querySelector(s);
+function toast(msg){const t=$('#toast');t.textContent=msg;t.classList.add('show');clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.classList.remove('show'),2200)}
+function card(g){return '<article class="game-card" data-id="'+g.id+'"><div class="cover" style="background:'+g.bg+'"><div class="cover-art">'+g.emoji+'</div><button class="fav '+(favorites.has(g.id)?'on':'')+'" data-fav="'+g.id+'" aria-label="Toggle favorite">'+(favorites.has(g.id)?'♥':'♡')+'</button><div class="cover-title">'+g.title+'</div></div><div class="game-meta"><strong>'+g.title+'</strong><span>'+g.year+'</span></div><div class="game-platform">'+g.platform+' · '+g.genre+'</div></article>'}
+function render(){
+ const q=$('#searchInput').value.trim().toLowerCase();
+ let list=games.filter(g=>(currentConsole==='All'||g.platform===currentConsole)&&(currentView!=='favorites'||favorites.has(g.id))&&(currentView!=='recent'||g.year>=1994)&&(!q||(g.title+' '+g.platform+' '+g.genre).toLowerCase().includes(q)));
+ if(currentView==='home'&&!q&&currentConsole==='All'){ $('#gamesHeading').textContent='Featured classics';$('#gamesSub').textContent='Hand-picked icons from gaming history';}
+ else{$('#gamesHeading').textContent=q?'Search results':currentView==='favorites'?'My favorites':currentConsole==='All'?'All games':currentConsole+' games';$('#gamesSub').textContent=list.length+' games in the library';}
+ $('#gameGrid').innerHTML=list.length?list.slice(0,5).map(card).join(''):'<div class="empty">No games found. Try another search or platform.</div>';
+ const arcade=games.filter(g=>g.platform==='Arcade');$('#arcadeGrid').innerHTML=arcade.map(card).join('');
+ $('#popularSection').style.display=(currentView==='home'&&!q&&currentConsole==='All')?'block':'none';
+ $('#featuredSection').style.display='block';
+}
+function setView(view){currentView=view;currentConsole='All';document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.view===view));render();window.scrollTo({top:0,behavior:'smooth'});}
+function setConsole(c){currentConsole=c;currentView='all';document.querySelectorAll('.console-card').forEach(b=>b.classList.toggle('selected',b.dataset.console===c));render();$('#featuredSection').scrollIntoView({behavior:'smooth',block:'start'});}
+function openGame(id){activeGame=games.find(g=>g.id===id);if(!activeGame)return;$('#modalTitle').textContent=activeGame.title;$('#modalText').textContent=activeGame.desc+'  ·  '+activeGame.platform+' · '+activeGame.year;$('#modalPlay').textContent='Game player coming soon';$('#modalFav').textContent=favorites.has(id)?'♥ Remove from favorites':'♡ Add to favorites';$('#modal').classList.add('open');}
+$('#gameGrid').addEventListener('click',e=>{const fav=e.target.closest('[data-fav]');if(fav){const id=Number(fav.dataset.fav);favorites.has(id)?favorites.delete(id):favorites.add(id);render();return;}const c=e.target.closest('[data-id]');if(c)openGame(Number(c.dataset.id));});
+$('#arcadeGrid').addEventListener('click',e=>{const fav=e.target.closest('[data-fav]');if(fav){const id=Number(fav.dataset.fav);favorites.has(id)?favorites.delete(id):favorites.add(id);render();return;}const c=e.target.closest('[data-id]');if(c)openGame(Number(c.dataset.id));});
+document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>setView(b.dataset.view)));
+document.querySelectorAll('[data-console]').forEach(b=>b.addEventListener('click',()=>setConsole(b.dataset.console)));
+$('#searchInput').addEventListener('input',()=>{currentView='all';currentConsole='All';render();});
+$('#heroExplore').onclick=()=>setView('all');$('#exploreBtn').onclick=()=>setView('all');$('#viewAll').onclick=()=>setView('all');$('#allPlatforms').onclick=()=>$('#platformSection').scrollIntoView({behavior:'smooth'});$('#heroPlatforms').onclick=()=>$('#platformSection').scrollIntoView({behavior:'smooth'});
+$('#closeModal').onclick=()=>$('#modal').classList.remove('open');$('#modal').addEventListener('click',e=>{if(e.target===$('#modal'))$('#modal').classList.remove('open')});
+$('#modalPlay').onclick=()=>toast('The browser emulator is the next development step.');$('#modalFav').onclick=()=>{if(!activeGame)return;favorites.has(activeGame.id)?favorites.delete(activeGame.id):favorites.add(activeGame.id);$('#modalFav').textContent=favorites.has(activeGame.id)?'♥ Remove from favorites':'♡ Add to favorites';render();toast(favorites.has(activeGame.id)?'Added to favorites':'Removed from favorites');};
+$('#aboutBtn').onclick=()=>toast('RetroVerse — a home for gaming legends.');
+render();
+</script>
+</body>
+</html>
