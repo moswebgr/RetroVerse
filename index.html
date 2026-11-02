@@ -97,7 +97,7 @@ const games=[
  {id:12,title:'Blob Quest',platform:'NES',year:2020,genre:'Puzzle platformer',emoji:'🟢',bg:'linear-gradient(135deg,#276b4a,#142a42)',desc:'A compact homebrew NES adventure by Tom Livak.',romUrl:'https://raw.githubusercontent.com/EmuDeck/emudeck-homebrew/main/nes/Blob%20Quest.zip',license:'Homebrew · EmuDeck collection'},
  {id:13,title:'Uwol: Quest for Money',platform:'SNES',year:2013,genre:'Platformer',emoji:'💰',bg:'linear-gradient(135deg,#6b5427,#263c25)',desc:'A homebrew platform adventure from The Mojon Twins, distributed in the EmuDeck homebrew collection.',romUrl:'https://raw.githubusercontent.com/EmuDeck/emudeck-homebrew/main/snes/Uwol%20Quest%20for%20Money.zip',license:'Homebrew · EmuDeck collection'},
  {id:14,title:'Tourmaline',platform:'Mega Drive',year:2020,genre:'Puzzle',emoji:'💎',bg:'linear-gradient(135deg,#315b88,#17253c)',desc:'A retro puzzle homebrew from RetroSouls for Sega Genesis/Mega Drive.',romUrl:'https://raw.githubusercontent.com/EmuDeck/emudeck-homebrew/main/genesis/Tourmaline.zip',license:'Homebrew · EmuDeck collection'},
- {id:15,title:'Tuff',platform:'Game Boy',year:2018,genre:'Action',emoji:'⚔️',bg:'linear-gradient(135deg,#58723a,#25342a)',desc:'A Game Boy homebrew game by Ivo Wetzel.',romUrl:'https://raw.githubusercontent.com/EmuDeck/emudeck-homebrew/main/gb/Tuff.zip',license:'Homebrew · EmuDeck collection'}
+ {id:15,title:'Tuff',platform:'Game Boy',year:2018,genre:'Action',emoji:'⚔️',bg:'linear-gradient(135deg,#58723a,#25342a)',desc:'A Game Boy homebrew game by Ivo Wetzel.',romUrl:'https://raw.githubusercontent.com/EmuDeck/emudeck-homebrew/main/gb/tuff.zip',license:'Homebrew · EmuDeck collection'}
 ];
 let favorites=new Set(JSON.parse(localStorage.getItem('rv-favorites')||'[]')), recent=JSON.parse(localStorage.getItem('rv-recent')||'[]'), currentView='home', currentConsole='All', activeGame=null, currentRomUrl=null, emulatorScript=null;
 const $=s=>document.querySelector(s);
@@ -123,19 +123,19 @@ document.querySelectorAll('[data-console]').forEach(b=>b.addEventListener('click
 $('#searchInput').addEventListener('input',()=>{currentView='all';currentConsole='All';render();});
 $('#heroExplore').onclick=()=>setView('all');$('#exploreBtn').onclick=()=>setView('all');$('#viewAll').onclick=()=>setView('all');$('#allPlatforms').onclick=()=>$('#platformSection').scrollIntoView({behavior:'smooth'});$('#heroPlatforms').onclick=()=>$('#platformSection').scrollIntoView({behavior:'smooth'});
 $('#closeModal').onclick=()=>$('#modal').classList.remove('open');$('#modal').addEventListener('click',e=>{if(e.target===$('#modal'))$('#modal').classList.remove('open')});
-function coreFor(platform){return ({'NES':'nes','SNES':'snes','Mega Drive':'segaMD','Game Boy':'gb','Arcade':'mame2003_plus','PlayStation':'psx'})[platform]||'nes';}
+function coreFor(platform){return ({'NES':'nes','SNES':'snes','Mega Drive':'segaMD','Game Boy':'gb','Arcade':'arcade','PlayStation':'psx'})[platform]||'nes';}
 function startEmulator(file){
  if(!activeGame||!file)return;
  const player=$('#player');$('#playerTitle').textContent=activeGame.title;
  if(currentRomUrl&&currentRomUrl.startsWith('blob:'))URL.revokeObjectURL(currentRomUrl);
  currentRomUrl=typeof file==='string'?file:URL.createObjectURL(file);
  window.EJS_player='#game';window.EJS_gameUrl=currentRomUrl;window.EJS_gameName=activeGame.title;
- window.EJS_core=coreFor(activeGame.platform);window.EJS_pathtodata='https://cdn.emulatorjs.org/stable/data/';
+ window.EJS_core=coreFor(activeGame.platform);window.EJS_gameID=activeGame.id;window.EJS_pathtodata='https://cdn.emulatorjs.org/stable/data/';
  window.EJS_startOnLoaded=true;window.EJS_color='#76b900';
  $('#game').innerHTML='';player.classList.add('open');$('#modal').classList.remove('open');
  if(emulatorScript){emulatorScript.remove();emulatorScript=null;}
  emulatorScript=document.createElement('script');emulatorScript.src=window.EJS_pathtodata+'loader.js';
- emulatorScript.onerror=()=>toast('Could not load the emulator. Check your connection and try again.');
+ emulatorScript.onerror=()=>{toast('The emulator could not load. Check your connection and try again.');$('#player').classList.remove('open');};
  document.body.appendChild(emulatorScript);
  recent=[activeGame.id,...recent.filter(id=>id!==activeGame.id)].slice(0,30);localStorage.setItem('rv-recent',JSON.stringify(recent));
 }
