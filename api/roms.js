@@ -55,7 +55,7 @@ module.exports = async function handler(req, res) {
       const response = await handleUpload({
         body: req.body,
         request: req,
-        onBeforeGenerateToken: async (_pathname, clientPayload) => {
+        onBeforeGenerateToken: async (pathname, clientPayload) => {
           let payload;
           try { payload = JSON.parse(clientPayload || "{}"); } catch { payload = {}; }
           const title = cleanText(payload.title, 80);
@@ -73,8 +73,11 @@ module.exports = async function handler(req, res) {
           }
 
           const slug = title.normalize("NFKD").replace(/[^a-zA-Z0-9]+/g, "-").replace(/^-|-$/g, "").toLowerCase() || "game";
+          const expectedPath = `roms/${platform}/${slug}.${extension}`;
+          if (pathname !== expectedPath) {
+            throw new Error("Invalid upload path. Please use the RetroVerse upload form.");
+          }
           return {
-            pathname: `roms/${platform}/${slug}.${extension}`,
             addRandomSuffix: true,
             maximumSizeInBytes: MAX_SIZE,
             allowedContentTypes: ["application/octet-stream", "application/zip", "application/x-zip-compressed"],
