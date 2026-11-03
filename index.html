@@ -1366,7 +1366,7 @@ async function startEmulator(file){
   if(/\.zip(?:$|[?#])/i.test(file)){
    const response=await fetch(file);if(!response.ok)throw new Error('Could not download game file ('+response.status+')');
    const zip=await JSZip.loadAsync(await response.arrayBuffer());
-   const allowed=({NES:/\.nes$/i,SNES:/\.(sfc|smc)$/i,'Mega Drive':/\.(md|gen|bin)$/i,'Game Boy':/\.(gb|gbc)$/i})[activeGame.platform]||/\.(nes|sfc|smc|md|gen|bin|gb|gbc)$/i;
+   const allowed=({NES:/\.nes$/i,SNES:/\.(sfc|smc)$/i,'Mega Drive':/\.(md|gen|bin)$/i,'Game Boy':/\.gb$/i,'Game Boy Color':/\.gbc$/i,'Game Boy Advance':/\.gba$/i,'Master System':/\.sms$/i,'Game Gear':/\.gg$/i})[activeGame.platform]||/\.(nes|sfc|smc|md|gen|bin|gb|gbc|gba|sms|gg)$/i;
    const entry=Object.values(zip.files).find(x=>!x.dir&&allowed.test(x.name));
    if(!entry)throw new Error('No compatible game file found inside the ZIP');
    gameFile=URL.createObjectURL(await entry.async('blob'));
