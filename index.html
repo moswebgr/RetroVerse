@@ -295,7 +295,7 @@ $('#arcadeGrid').addEventListener('click',e=>{const fav=e.target.closest('[data-
 document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>setView(b.dataset.view)));
 document.querySelectorAll('[data-console]').forEach(b=>b.addEventListener('click',()=>setConsole(b.dataset.console)));
 $('#searchInput').addEventListener('input',()=>{currentView='all';currentConsole='All';render();});
-$('#heroExplore').onclick=()=>setView('all');$('#exploreBtn').onclick=()=>setView('all');$('#viewAll').onclick=()=>setView('all');$('#allPlatforms').onclick=()=>$('#platformSection').scrollIntoView({behavior:'smooth'});$('#heroPlatforms').onclick=()=>$('#platformSection').scrollIntoView({behavior:'smooth'});
+$('#heroExplore')?.addEventListener('click',()=>setView('all'));$('#exploreBtn').onclick=()=>setView('all');$('#viewAll').onclick=()=>setView('all');$('#allPlatforms').onclick=()=>$('#platformSection').scrollIntoView({behavior:'smooth'});$('#heroPlatforms')?.addEventListener('click',()=>$('#platformSection').scrollIntoView({behavior:'smooth'}));
 $('#closeModal').onclick=()=>$('#modal').classList.remove('open');$('#modal').addEventListener('click',e=>{if(e.target===$('#modal'))$('#modal').classList.remove('open')});
 function coreFor(platform){return ({'NES':'nes','SNES':'snes','Mega Drive':'segaMD','Game Boy':'gb','Arcade':'fbneo','PlayStation':'psx'})[platform]||'nes';}
 async function startEmulator(file){
