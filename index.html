@@ -38,18 +38,18 @@
     <div class="side-divider"></div>
     <div class="nav-label">PLATFORMS</div>
     <nav class="console-nav" id="sideConsoles">
-      <button data-console="All">All platforms <span class="count">08</span></button>
-      <button data-console="NES">Nintendo Entertainment System <span class="count">NES</span></button>
-      <button data-console="SNES">Super Nintendo <span class="count">SNES</span></button>
-      <button data-console="Mega Drive">Sega Mega Drive <span class="count">MD</span></button>
-      <button data-console="Game Boy">Game Boy <span class="count">GB</span></button>
-      <button data-console="Game Boy Color">Game Boy Color <span class="count">GBC</span></button>
-      <button data-console="Game Boy Advance">Game Boy Advance <span class="count">GBA</span></button>
-      <button data-console="Master System">Sega Master System <span class="count">SMS</span></button>
-      <button data-console="Game Gear">Sega Game Gear <span class="count">GG</span></button>
-      <button data-console="Doom">Doom <span class="count">PC</span></button>
-      <button data-console="Arcade">Arcade classics <span class="count">AR</span></button>
-      <button data-console="PlayStation">PlayStation <span class="count">PS1</span></button>
+      <button data-console="All">All platforms <span class="count" data-platform-count="All">0</span></button>
+      <button data-console="NES">Nintendo Entertainment System <span class="count"><span data-platform-count="NES">0</span></span></button>
+      <button data-console="SNES">Super Nintendo <span class="count"><span data-platform-count="SNES">0</span></span></button>
+      <button data-console="Mega Drive">Sega Mega Drive <span class="count"><span data-platform-count="Mega Drive">0</span></span></button>
+      <button data-console="Game Boy">Game Boy <span class="count"><span data-platform-count="Game Boy">0</span></span></button>
+      <button data-console="Game Boy Color">Game Boy Color <span class="count"><span data-platform-count="Game Boy Color">0</span></span></button>
+      <button data-console="Game Boy Advance">Game Boy Advance <span class="count"><span data-platform-count="Game Boy Advance">0</span></span></button>
+      <button data-console="Master System">Sega Master System <span class="count"><span data-platform-count="Master System">0</span></span></button>
+      <button data-console="Game Gear">Sega Game Gear <span class="count"><span data-platform-count="Game Gear">0</span></span></button>
+      <button data-console="Doom">Doom <span class="count"><span data-platform-count="Doom">0</span></span></button>
+      <button data-console="Arcade">Arcade classics <span class="count"><span data-platform-count="Arcade">0</span></span></button>
+      <button data-console="PlayStation">PlayStation <span class="count"><span data-platform-count="PlayStation">0</span></span></button>
     </nav>
     <div class="sidebar-bottom"><strong>THE GOLDEN AGE OF GAMING</strong><p>One library. Legendary games. Endless nostalgia.</p><button id="exploreBtn">Explore library ↗</button></div>
   </aside>
@@ -1336,6 +1336,17 @@ const $=s=>document.querySelector(s);
 function toast(msg){const t=$('#toast');t.textContent=msg;t.classList.add('show');clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.classList.remove('show'),2200)}
 function card(g){return '<article class="game-card" data-id="'+g.id+'"><div class="cover" style="background:'+g.bg+'">'+(g.image?'<img class="cover-photo" src="'+g.image+'" alt="'+g.title+' original game artwork" loading="lazy" onerror="this.remove()">':'<div class="cover-art">'+g.emoji+'</div>')+'<button class="fav '+(favorites.has(g.id)?'on':'')+'" data-fav="'+g.id+'" aria-label="Toggle favorite">'+(favorites.has(g.id)?'♥':'♡')+'</button><div class="cover-title">'+g.title+'</div></div><div class="game-meta"><strong>'+g.title+'</strong><span>'+g.year+'</span></div><div class="game-platform">'+g.platform+' · '+g.genre+'</div></article>'}
 function render(){
+ // Keep platform totals synchronized with the complete game catalog.
+ document.querySelectorAll('[data-platform-count]').forEach(el=>{
+   const platform=el.dataset.platformCount;
+   el.textContent=platform==='All'?games.length:games.filter(g=>g.platform===platform).length;
+ });
+ document.querySelectorAll('.console-card').forEach(el=>{
+   const platform=el.dataset.console;
+   const count=games.filter(g=>g.platform===platform).length;
+   const small=el.querySelector('small');
+   if(small)small.textContent=count+' GAMES';
+ });
  const q=$('#searchInput').value.trim().toLowerCase();
  let list=games.filter(g=>(currentConsole==='All'||g.platform===currentConsole)&&(currentView!=='favorites'||favorites.has(g.id))&&(currentView!=='recent'||recent.includes(g.id))&&(!q||(g.title+' '+g.platform+' '+g.genre).toLowerCase().includes(q)));
  if(currentView==='home'&&!q&&currentConsole==='All'){ $('#gamesHeading').textContent='Featured classics';$('#gamesSub').textContent='Hand-picked icons from gaming history';}
