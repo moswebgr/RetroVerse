@@ -1305,6 +1305,32 @@ const games=[
   "image": "https://raw.githubusercontent.com/EmuDeck/emudeck-homebrew/main/downloaded_media/genesis/miximages/homebrew/Zero%20Tolerance.png"
  }
 ];
+// Verified downloadable Homebrew archives from the EmuDeck collection.
+// IDs without a matching archive remain marked unavailable rather than pointing to a wrong ROM.
+const homebrewArchives={
+25:'nes/Atmo%20Sphere.zip',26:'nes/Bare%20Metal.zip',27:'genesis/GraviBots.zip',28:'genesis/Robert%20Cop%202%20Vs%20Dragon%20Ninja.zip',
+29:'snes/Sure%20Instinct.zip',30:'snes/Supercooked.zip',31:'gba/apotris.zip',32:'nes/BattleKid.zip',33:'nes/BattleKid2.zip',
+34:'nes/BladeBuster.zip',35:'nes/elite.zip',36:'nes/Lan_Master.zip',37:'nes/owlia.zip',38:'nes/nes_virus_cleaner.zip',
+39:'nes/nomolos.zip',40:'nes/PROTO%20DERE.zip',41:'nes/Streemerz.zip',44:'snes/MazezaM.zip',45:'snes/rem.zip',
+46:'snes/Rodas%20Cross.zip',48:'gb/THEBOUNCINGBALL.zip',49:'gb/dangan.zip',50:'gb/Lumberjack.zip',
+51:'gb/PolkaSheep.zip',52:'gb/Retroid.zip',53:'gb/Rocket%20Man.zip',54:'gb/SuperPrincess.zip',
+55:'gb/tobu.zip',56:'gbc/Floracy.zip',57:'gbc/infinity.zip',58:'gbc/Last%20Crown%20Warriors.zip',
+60:'gbc/Spelunky.zip',61:'gbc/JetPakDX.zip',62:'gbc/ucity.zip',63:'gba/anguna.zip',64:'gba/Another_world.zip',
+66:'gba/BlastArenaAdvance.zip',67:'gba/Broken%20Circle%20(Proto).zip',68:'gba/flappybird.zip',
+69:'gba/Motocross%20Challenge%20(Proto).zip',71:'gba/powerpig.zip',72:'gba/simonchu.zip',74:'gba/sushi.zip',
+75:'mastersystem/AstroForce.sms.zip',76:'mastersystem/BaraBuruu.zip',77:'mastersystem/BruceLee.zip',
+79:'mastersystem/DARC.zip',80:'mastersystem/Flight%20Of%20Pigarus.zip',81:'mastersystem/Galactic%20Revenge.sms.zip',
+83:'mastersystem/monkeylad.zip',84:'mastersystem/silvervalley.sms.zip',86:'mastersystem/WingWarriors.zip',
+87:'gamegear/dangerousdemolition.zip',88:'gamegear/Fire%20Track.zip',89:'gamegear/NIBBLES.zip',
+90:'gamegear/Swabby.zip',93:'genesis/Arkagis%20Revolution.zip',94:'genesis/cavestory.zip',
+95:'genesis/Demons%20of%20Asteborg%20(World)%20(Demo%202)%20(Unl).zip',97:'genesis/Irena%20Genesis%20Metal%20Fury%20(Proto)%20(World).zip',
+99:'genesis/Lethal%20Wedding.zip',100:'genesis/oldtowers.zip',101:'genesis/Omega%20Blast.zip',
+102:'genesis/papicommandoremix.zip',103:'genesis/Phantom%20Gear.zip',104:'genesis/PRINGLES.zip',
+105:'genesis/Project%20MD.zip',106:'genesis/rickdangerous.zip',107:'genesis/TANGLEWD.zip',
+108:'genesis/Vilq%20Adventure.zip',109:'genesis/Xump%202.zip',110:'genesis/Zero%20Tolerance.zip'
+};
+const archiveBase='https://raw.githubusercontent.com/EmuDeck/emudeck-homebrew/main/';
+games.forEach(g=>{if(homebrewArchives[g.id])g.romUrl=archiveBase+homebrewArchives[g.id];});
 let favorites=new Set(JSON.parse(localStorage.getItem('rv-favorites')||'[]')), recent=JSON.parse(localStorage.getItem('rv-recent')||'[]'), currentView='home', currentConsole='All', activeGame=null, currentRomUrl=null, emulatorScript=null;
 const $=s=>document.querySelector(s);
 function toast(msg){const t=$('#toast');t.textContent=msg;t.classList.add('show');clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.classList.remove('show'),2200)}
@@ -1321,7 +1347,7 @@ function render(){
 }
 function setView(view){currentView=view;currentConsole='All';document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.view===view));render();window.scrollTo({top:0,behavior:'smooth'});}
 function setConsole(c){currentConsole=c;currentView='all';document.querySelectorAll('.console-card').forEach(b=>b.classList.toggle('selected',b.dataset.console===c));render();$('#featuredSection').scrollIntoView({behavior:'smooth',block:'start'});}
-function openGame(id){activeGame=games.find(g=>g.id===id);if(!activeGame)return;$('#modalTitle').textContent=activeGame.title;$('#modal .modal-image').style.backgroundImage=activeGame.image?'linear-gradient(0deg,#1a211c,transparent),url("'+activeGame.image+'")':'linear-gradient(135deg,#263b2a,#151b16)';$('#modalText').textContent=activeGame.desc+'  ·  '+activeGame.platform+' · '+activeGame.year;$('#modalPlay').textContent='▶ Play now';$('#modalPlay').disabled=!activeGame.romUrl;$('#modalPlay').title=activeGame.romUrl?'Start game':'This game is not playable yet';$('#modalFav').textContent=favorites.has(id)?'♥ Remove from favorites':'♡ Add to favorites';$('#modal').classList.add('open');}
+function openGame(id){activeGame=games.find(g=>g.id===id);if(!activeGame)return;$('#modalTitle').textContent=activeGame.title;$('#modal .modal-image').style.backgroundImage=activeGame.image?'linear-gradient(0deg,#1a211c,transparent),url("'+activeGame.image+'")':'linear-gradient(135deg,#263b2a,#151b16)';$('#modalText').textContent=activeGame.desc+'  ·  '+activeGame.platform+' · '+activeGame.year;$('#modalPlay').textContent=activeGame.romUrl?'▶ Play now':'ROM unavailable';$('#modalPlay').disabled=!activeGame.romUrl;$('#modalPlay').title=activeGame.romUrl?'Start game':'No matching downloadable Homebrew ROM was found in the source collection';$('#modalFav').textContent=favorites.has(id)?'♥ Remove from favorites':'♡ Add to favorites';$('#modal').classList.add('open');}
 $('#gameGrid').addEventListener('click',e=>{const fav=e.target.closest('[data-fav]');if(fav){const id=Number(fav.dataset.fav);favorites.has(id)?favorites.delete(id):favorites.add(id);localStorage.setItem('rv-favorites',JSON.stringify([...favorites]));render();return;}const c=e.target.closest('[data-id]');if(c)openGame(Number(c.dataset.id));});
 $('#arcadeGrid').addEventListener('click',e=>{const fav=e.target.closest('[data-fav]');if(fav){const id=Number(fav.dataset.fav);favorites.has(id)?favorites.delete(id):favorites.add(id);localStorage.setItem('rv-favorites',JSON.stringify([...favorites]));render();return;}const c=e.target.closest('[data-id]');if(c)openGame(Number(c.dataset.id));});
 document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>setView(b.dataset.view)));
@@ -1329,7 +1355,7 @@ document.querySelectorAll('[data-console]').forEach(b=>b.addEventListener('click
 $('#searchInput').addEventListener('input',()=>{currentView='all';currentConsole='All';render();});
 $('#heroExplore')?.addEventListener('click',()=>setView('all'));$('#exploreBtn').onclick=()=>setView('all');$('#viewAll').onclick=()=>setView('all');$('#allPlatforms').onclick=()=>$('#platformSection').scrollIntoView({behavior:'smooth'});$('#heroPlatforms')?.addEventListener('click',()=>$('#platformSection').scrollIntoView({behavior:'smooth'}));
 $('#closeModal').onclick=()=>$('#modal').classList.remove('open');$('#modal').addEventListener('click',e=>{if(e.target===$('#modal'))$('#modal').classList.remove('open')});
-function coreFor(platform){return ({'NES':'nes','SNES':'snes','Mega Drive':'segaMD','Game Boy':'gb','Arcade':'fbneo','PlayStation':'psx'})[platform]||'nes';}
+function coreFor(platform){return ({'NES':'nes','SNES':'snes','Mega Drive':'segaMD','Game Boy':'gb','Game Boy Color':'gbc','Game Boy Advance':'gba','Master System':'segaMS','Game Gear':'segaGG','Arcade':'fbneo','PlayStation':'psx'})[platform]||'nes';}
 async function startEmulator(file){
  if(!activeGame||typeof file!=='string'||!file)return;
  const player=$('#player');$('#playerTitle').textContent=activeGame.title;
